@@ -1,9 +1,10 @@
-import './App.css';
-import Header from "./component/layout/Header/Header.js"
-import {BrowserRouter as Router} from "react-router-dom";
-import WebFont from "webfontloader";
 import React from "react";
-import Footer from "./component/layout/Footer/Footer.js"
+import './App.css';
+import {BrowserRouter as Router,Routes,Route} from "react-router-dom";
+import WebFont from "webfontloader";
+import Header from "./component/layout/Header/Header"
+import Footer from "./component/layout/Footer/Footer"
+import Home from "./component/Home/Home"
 
 function App() {
   React.useEffect(() =>{
@@ -17,6 +18,9 @@ function App() {
   return (
     <Router>
       <Header />
+      <Routes>
+      <Route exact path="/" element={<Home />} />
+      </Routes>
       <Footer />
     </Router>
   );
