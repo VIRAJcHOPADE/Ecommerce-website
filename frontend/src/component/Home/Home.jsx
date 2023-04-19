@@ -5,19 +5,24 @@ import Product from "./Product.jsx"
 import MetaData from "../layout/MetaData";
 import { getProduct } from "../../actions/productAction";
 import { useSelector, useDispatch } from "react-redux";
-const product = {
-    name: "Blue Tshirt",
-    images: [{url:"https://i.ibb.co/DRST1n/1.webp"}],
-    price:"$3000",
-    _id:"abhishek", 
-};
+import Loader from '../layout/Loader/Loader';
+
+
 const Home = () => {
     const dispatch = useDispatch();
+    const { loading, error, products, productsCount } = useSelector(
+        (state) => state.products
+    );
+
     useEffect(() => {
         dispatch(getProduct());
     },[dispatch]);
+    
   return (
-  <>
+  <Fragment> 
+        {loading ? (
+            <Loader/>
+        ):<Fragment> 
         <MetaData title="Ecommerce"/>
         <div className = "banner">
             <p>Welcom to ECOMMERCE</p>
@@ -32,17 +37,14 @@ const Home = () => {
         <h2 className="homeHeading">Featured Products</h2>
 
         <div className="container" id="container">
-            <Product product={product} />
-            <Product product={product} />
-            <Product product={product} />
-            <Product product={product} />
-            <Product product={product} />
-            <Product product={product} />
-            <Product product={product} />
-
+           {products && 
+            products.map((product) =>
+            ( <Product key={product._id} product={product} />
+            ))}
         </div>
         
-  </>  
+  </Fragment>  }
+  </Fragment>  
   );
 };
 
