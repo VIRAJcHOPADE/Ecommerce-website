@@ -3,7 +3,8 @@ import Carousel from "react-material-ui-carousel";
 import { useSelector, useDispatch } from "react-redux";
 import { clearErrors, getProductDetails } from "../../actions/productAction";
 import ReactStars from "react-rating-stars-component";
-import ReviewCard from "./ReviewCard.jsx"
+import ReviewCard from "./ReviewCard.js"
+import MetaData from "../layout/MetaData";
 import Loader from '../layout/Loader/Loader';
 import { useParams } from 'react-router-dom';
 import "./ProductDetails.css";
@@ -36,7 +37,11 @@ const options = {
 
   return (
     <Fragment>
-        {loading? <Loader/> : (<Fragment>
+        {loading? (
+        <Loader/> 
+        ) : (
+        <Fragment>
+          <MetaData title={`${product.name} -- ECOMMERCE`} />
         <div className="ProductDetails">
         <div>
             <Carousel>

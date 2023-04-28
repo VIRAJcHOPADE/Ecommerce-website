@@ -1,7 +1,7 @@
 import React,{ Fragment , useEffect} from 'react'
 import { IoArrowBackCircleSharp } from "react-icons/io5"
 import "./Home.css"
-import Product from "./ProductCard.jsx"
+import ProductCard from "./ProductCard.js"
 import MetaData from "../layout/MetaData";
 import { clearErrors, getProduct } from "../../actions/productAction";
 import { useSelector, useDispatch } from "react-redux";
@@ -11,7 +11,7 @@ import {useAlert} from "react-alert"
 const Home = () => {
     const alert = useAlert();
     const dispatch = useDispatch();
-    const { loading, error, products, productsCount } = useSelector(
+    const { loading, error, products} = useSelector(
         (state) => state.products
     );
 
@@ -22,35 +22,38 @@ const Home = () => {
         }
         dispatch(getProduct());
         console.log("products",products)
-    },[dispatch,error,alert]);
+    },[dispatch,error,alert,products]);
     
   return (
-  <Fragment> 
-        {loading ? (
-            <Loader/>
-        ):<Fragment> 
-        <MetaData title="Ecommerce"/>
-        <div className = "banner">
-            <p>Welcom to ECOMMERCE</p>
+   <Fragment>
+      {loading ? (
+        <Loader />
+      ) : (
+        <Fragment>
+          <MetaData title="ECOMMERCE" />
+
+          <div className="banner">
+            <p>Welcome to Ecommerce</p>
             <h1>FIND AMAZING PRODUCTS BELOW</h1>
 
             <a href="#container">
-            <button>
+              <button>
                 Scroll <IoArrowBackCircleSharp/>
-            </button>
+              </button>
             </a>
-        </div>
-        <h2 className="homeHeading">Featured Products</h2>
+          </div>
 
-        <div className="container" id="container">
-           {products && 
-            products.map((product) =>
-            ( <Product key={product._id} product={product} />
-            ))}
-        </div>
-        
-  </Fragment>  }
-  </Fragment>  
+          <h2 className="homeHeading">Featured Products</h2>
+
+          <div className="container" id="container">
+            {products &&
+              products.map((product) => (
+                <ProductCard key={product._id} product={product} />
+              ))}
+          </div>
+        </Fragment>
+      )}
+    </Fragment> 
   );
 };
 
