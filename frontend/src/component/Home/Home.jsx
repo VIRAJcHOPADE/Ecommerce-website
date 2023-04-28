@@ -1,9 +1,9 @@
 import React,{ Fragment , useEffect} from 'react'
 import { IoArrowBackCircleSharp } from "react-icons/io5"
 import "./Home.css"
-import Product from "./Product.jsx"
+import Product from "./ProductCard.jsx"
 import MetaData from "../layout/MetaData";
-import { getProduct } from "../../actions/productAction";
+import { clearErrors, getProduct } from "../../actions/productAction";
 import { useSelector, useDispatch } from "react-redux";
 import Loader from '../layout/Loader/Loader';
 import {useAlert} from "react-alert"
@@ -17,9 +17,11 @@ const Home = () => {
 
     useEffect(() => {
         if(error) {
-            return alert.error(error);
+            alert.error(error);
+            dispatch(clearErrors());
         }
         dispatch(getProduct());
+        console.log("products",products)
     },[dispatch,error,alert]);
     
   return (

@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 
 
-const Product = ({ product }) => {
+const ProductCard = ({ product }) => {
   console.log(product);
   const options = {
       edit:false,
@@ -26,4 +26,4 @@ const Product = ({ product }) => {
   );
 };
 
-export default Product;
+export default ProductCard;
