@@ -1,5 +1,6 @@
 import React from "react";
 import './App.css';
+import { useSelector } from "react-redux";
 import {BrowserRouter as Router,Routes,Route} from "react-router-dom";
 import WebFont from "webfontloader";
 import Header from "./component/layout/Header/Header"
@@ -12,7 +13,12 @@ import Search from "./component/product/Search.js"
 import LoginSignUp from "./component/User/LoginSignUp";
 import store from "./store"
 import { loadUser } from "./actions/userAction";
+import UserOptions from "./component/layout/Header/UserOptions.js"
+
 function App() {
+  const { isAuthenticated, user } = useSelector((state) => state.user);
+
+
   React.useEffect(() =>{
     WebFont.load({
       google: {
@@ -27,6 +33,7 @@ function App() {
     
     <Router>
       <Header />
+      {isAuthenticated && <UserOptions user={user} />}
       <Routes>
       <Route exact path="/" element={<Home />} />
       <Route exact path="/product/:id" element={<ProductDetails/>} />

@@ -42,16 +42,16 @@ const LoginSignUp = ({ location }) => {
 
   const registerSubmit = (e) => {
     e.preventDefault();
-    // if(avatar == null){
-    //   alert.error("pleas select an avatar");
-    //   return;
-    // }
+    if(avatar == null){
+      alert.error("pleas select an avatar");
+      return;
+    }
     const myForm = new FormData();
 
     myForm.set("name", name);
     myForm.set("email", email);
     myForm.set("password", password);
-    // myForm.set("avatar", avatar);
+    myForm.set("avatar", avatar);
     dispatch(register(myForm));
   };
 
