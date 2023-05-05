@@ -1,12 +1,15 @@
 import React from "react";
 import './App.css';
 import { useSelector } from "react-redux";
+import Profile from "./component/User/Profile.jsx";
+// import ProtectedRoute from "./component/Route/ProtectedRoute";
+
 import {BrowserRouter as Router,Routes,Route} from "react-router-dom";
 import WebFont from "webfontloader";
 import Header from "./component/layout/Header/Header"
 import Footer from "./component/layout/Footer/Footer"
 import Home from "./component/Home/Home"
-import Loader from "./component/layout/Loader/Loader";
+// import Loader from "./component/layout/Loader/Loader";
 import ProductDetails from "./component/product/ProductDetails.js"
 import Products from "./component/product/Products.js"
 import Search from "./component/product/Search.js"
@@ -42,7 +45,7 @@ function App() {
       <Route  path="/products/:keyword" element={<Products />} />
       <Route exact path="/search" element={<Search/>} />
       <Route exact path="/login" element={<LoginSignUp/>} />
-      
+      <Route exact path="/account" element={<Profile/>} />
       </Routes>
       <Footer />
     </Router>
