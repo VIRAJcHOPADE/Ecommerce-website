@@ -3,6 +3,7 @@ import './App.css';
 import { useSelector } from "react-redux";
 import Profile from "./component/User/Profile.jsx";
 // import ProtectedRoute from "./component/Route/ProtectedRoute";
+import UpdateProfile from "./component/User/UpdateProfile.jsx";
 
 import {BrowserRouter as Router,Routes,Route} from "react-router-dom";
 import WebFont from "webfontloader";
@@ -46,6 +47,8 @@ function App() {
       <Route exact path="/search" element={<Search/>} />
       <Route exact path="/login" element={<LoginSignUp/>} />
       <Route exact path="/account" element={<Profile/>} />
+      <Route exact path="/me/update" element={<UpdateProfile/>} />
+
       </Routes>
       <Footer />
     </Router>
