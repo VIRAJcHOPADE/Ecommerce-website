@@ -4,6 +4,10 @@ import { useSelector } from "react-redux";
 import Profile from "./component/User/Profile.jsx";
 // import ProtectedRoute from "./component/Route/ProtectedRoute";
 import UpdateProfile from "./component/User/UpdateProfile.jsx";
+import UpdatePassword from "./component/User/UpdatePassword.jsx";
+import ForgotPassword from "./component/User/ForgotPassword.jsx";
+import ResetPassword from "./component/User/ResetPassword.jsx";
+import Cart from "./component/Cart/Cart";
 
 import {BrowserRouter as Router,Routes,Route} from "react-router-dom";
 import WebFont from "webfontloader";
@@ -48,6 +52,10 @@ function App() {
       <Route exact path="/login" element={<LoginSignUp/>} />
       <Route exact path="/account" element={<Profile/>} />
       <Route exact path="/me/update" element={<UpdateProfile/>} />
+      <Route exact path="/password/update" element={<UpdatePassword/>} />
+      <Route exact path="/password/forgot" element={<ForgotPassword/>} />
+      <Route exact path="/password/reset/:token" element={<ResetPassword/>} />
+      <Route exact path="/cart" element={<Cart/>} />
 
       </Routes>
       <Footer />

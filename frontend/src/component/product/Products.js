@@ -26,71 +26,69 @@ const Products = () => {
     
     const alert = useAlert();
    
-    const [currentPage, setCurrentPage] = useState(1);
-    const [price, setPrice] = useState([0,25000]);
-    // const [keyword , setKeyword] = useState(null);
-    const [category, setCategory] = useState("");
-    const [ratings, setRatings] = useState(0);
+   const [currentPage, setCurrentPage] = useState(1);
+  const [price, setPrice] = useState([0, 25000]);
+  const [category, setCategory] = useState("");
 
-    const { 
-      products,
-      loading , 
-      error, 
-      productsCount, 
-      resultPerPage,
-      filteredProductsCount, 
-    } = useSelector((state) => state.products);
-     
-    const keyword = params.keyword;
-    
-    const setCurrentPageNo = (e) => {
+  const [ratings, setRatings] = useState(0);
+
+  const {
+    products,
+    loading,
+    error,
+    productsCount,
+    resultPerPage,
+    filteredProductsCount,
+  } = useSelector((state) => state.products);
+
+  const keyword = params.keyword;
+
+  const setCurrentPageNo = (e) => {
     setCurrentPage(e);
   };
 
-    const priceHandler = (event, newPrice) => {
-      setPrice(newPrice);
+  const priceHandler = (event, newPrice) => {
+    setPrice(newPrice);
+  };
+  let count = filteredProductsCount;
+
+  useEffect(() => {
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
     }
-    
-    
-    useEffect(() => {
-      // setKeyword(params.keyword)
-      //   if(keyword){
-        if (error) {
-          alert.error(error);
-          dispatch(clearErrors());
-        }
-        dispatch(getProduct(keyword,currentPage,price,category,ratings));
-        // }
+
+    dispatch(getProduct(keyword, currentPage, price, category, ratings));
       },[dispatch,keyword,currentPage,price,alert,error,category,ratings]); 
       
-      let count = filteredProductsCount;
-
-  return (
+   return (
     <Fragment>
-        {loading ? (<Loader/>
-        ): (
-          <Fragment>
-            <MetaData title="PRODUCTS -- ECOMMERCE" />
-            <h2 className="productsHeading">Products</h2>
-            <div className ="products">
-              {products &&
+      {loading ? (
+        <Loader />
+      ) : (
+        <Fragment>
+          <MetaData title="PRODUCTS -- ECOMMERCE" />
+          <h2 className="productsHeading">Products</h2>
+
+          <div className="products">
+            {products &&
               products.map((product) => (
                 <ProductCard key={product._id} product={product} />
               ))}
-            </div>
-            
-            <div className = "filterBox">
-              <Typography>Price</Typography>
-              <Slider
-                value={price}
-                onChange={priceHandler}
-                valueLabelDisplay="auto"
-                aria-labelledby="range-slider"
-                min={0}
-                max={25000}
-              />
+          </div>
 
-              <Typography>Categories</Typography>
+          <div className="filterBox">
+            <Typography>Price</Typography>
+            <Slider
+              value={price}
+              onChange={priceHandler}
+              valueLabelDisplay="auto"
+              aria-labelledby="range-slider"
+              min={0}
+              max={25000}
+            />
+
+            <Typography>Categories</Typography>
             <ul className="categoryBox">
               {categories.map((category) => (
                 <li
@@ -102,8 +100,8 @@ const Products = () => {
                 </li>
               ))}
             </ul>
-             
-              <fieldset>
+
+            <fieldset>
               <Typography component="legend">Ratings Above</Typography>
               <Slider
                 value={ratings}
@@ -116,15 +114,13 @@ const Products = () => {
                 max={5}
               />
             </fieldset>
-
-            </div>
-            
-            { resultPerPage < count && (
+          </div>
+          {resultPerPage < count && (
             <div className="paginationBox">
               <Pagination
                 activePage={currentPage}
                 itemsCountPerPage={resultPerPage}
-                totalItemsCount={productsCount || 10}
+                totalItemsCount={productsCount}
                 onChange={setCurrentPageNo}
                 nextPageText="Next"
                 prevPageText="Prev"
@@ -136,11 +132,11 @@ const Products = () => {
                 activeLinkClass="pageLinkActive"
               />
             </div>
-          )} 
-          </Fragment>
-        )}
+          )}
+        </Fragment>
+      )}
     </Fragment>
-  )
-}
+  );
+};
 
 export default Products

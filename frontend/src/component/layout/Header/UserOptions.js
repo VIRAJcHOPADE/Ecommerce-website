@@ -7,13 +7,15 @@ import PersonIcon from "@material-ui/icons/Person";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import ListAltIcon from "@material-ui/icons/ListAlt";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import { useNavigate } from "react-router-dom";
 import { useAlert } from "react-alert";
 import { logout } from "../../../actions/userAction";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const UserOptions = ({ user }) => {
-  // const { cartItems } = useSelector((state) => state.cart);
+ 
+
+  const { cartItems } = useSelector((state) => state.cart);
 
   const [open, setOpen] = useState(false);
   const history = useNavigate();
@@ -22,7 +24,16 @@ const UserOptions = ({ user }) => {
 
   const options = [
     { icon: <ListAltIcon />, name: "Orders", func: orders },
-    { icon: <PersonIcon />, name: "Profile", func: account },    
+    { icon: <PersonIcon />, name: "Profile", func: account },
+    {
+      icon: (
+        <ShoppingCartIcon
+          style={{ color: cartItems.length > 0 ? "tomato" : "unset" }}
+        />
+      ),
+      name: `Cart(${cartItems.length})`,
+      func: cart,
+    },
     { icon: <ExitToAppIcon />, name: "Logout", func: logoutUser },
   ];
 
@@ -35,18 +46,18 @@ const UserOptions = ({ user }) => {
   }
 
   function dashboard() {
-    history("/admin/dashboard");
+    history.push("/admin/dashboard");
   }
 
   function orders() {
-    history("/orders");
+    history.push("/orders");
   }
   function account() {
-    history("/account");
+    history.push("/account");
   }
-  // function cart() {
-  //   history("/cart");
-  // }
+  function cart() {
+    history.push("/cart");
+  }
   function logoutUser() {
     dispatch(logout());
     alert.success("Logout Successfully");
