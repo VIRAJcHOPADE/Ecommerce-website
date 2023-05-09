@@ -8,6 +8,7 @@ import UpdatePassword from "./component/User/UpdatePassword.jsx";
 import ForgotPassword from "./component/User/ForgotPassword.jsx";
 import ResetPassword from "./component/User/ResetPassword.jsx";
 import Cart from "./component/Cart/Cart";
+import Shipping from "./component/Cart/Shipping.jsx";
 
 import {BrowserRouter as Router,Routes,Route} from "react-router-dom";
 import WebFont from "webfontloader";
@@ -22,6 +23,7 @@ import LoginSignUp from "./component/User/LoginSignUp";
 import store from "./store"
 import { loadUser } from "./actions/userAction";
 import UserOptions from "./component/layout/Header/UserOptions.js"
+import ConfirmOrder from "./component/Cart/ConfirmOrder";
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -56,6 +58,8 @@ function App() {
       <Route exact path="/password/forgot" element={<ForgotPassword/>} />
       <Route exact path="/password/reset/:token" element={<ResetPassword/>} />
       <Route exact path="/cart" element={<Cart/>} />
+      <Route exact path="/shipping" element={<Shipping/>} />
+      <Route exact path="/order/confirm" element={<ConfirmOrder/>} />
 
       </Routes>
       <Footer />
