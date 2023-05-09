@@ -1,6 +1,7 @@
 import React from "react";
 import './App.css';
-import { useEffect, useState, useSelector } from "react";
+import { useState} from "react";
+import { useSelector } from 'react-redux';
 import Profile from "./component/User/Profile.jsx";
 // import ProtectedRoute from "./component/Route/ProtectedRoute";
 import UpdateProfile from "./component/User/UpdateProfile.jsx";
@@ -10,7 +11,9 @@ import ResetPassword from "./component/User/ResetPassword.jsx";
 import Cart from "./component/Cart/Cart";
 import Shipping from "./component/Cart/Shipping.jsx";
 import OrderSuccess from "./component/Cart/OrderSuccess";
-
+import Payment from "./component/Cart/Payment";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 import {BrowserRouter as Router,Routes,Route} from "react-router-dom";
 import WebFont from "webfontloader";
 import Header from "./component/layout/Header/Header"
@@ -26,9 +29,11 @@ import { loadUser } from "./actions/userAction";
 import UserOptions from "./component/layout/Header/UserOptions.js"
 import ConfirmOrder from "./component/Cart/ConfirmOrder";
 import axios from "axios";
+import { Fragment } from "react";
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
+
   const [stripeApiKey, setStripeApiKey] = useState("");
 
   async function getStripeApiKey() {
@@ -50,12 +55,19 @@ function App() {
 
   },[]);
 
-  return (
     
+
+  return (
+    <Fragment>
+      {stripeApiKey && (
+    <Elements stripe={loadStripe(stripeApiKey)}>
     <Router>
       <Header />
       {isAuthenticated && <UserOptions user={user} />}
       <Routes>
+        
+          <Route exact path="/process/payment" element={<Payment/>} />
+        
       <Route exact path="/" element={<Home />} />
       <Route exact path="/product/:id" element={<ProductDetails/>} />
       {/* <Route exact path="/sad" element={<Loader/>} /> */}
@@ -77,7 +89,9 @@ function App() {
       </Routes>
       <Footer />
     </Router>
-    
+    </Elements>
+    )}
+    </Fragment>
   );
 }
 

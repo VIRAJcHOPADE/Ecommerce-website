@@ -58,9 +58,16 @@ const Products = () => {
       dispatch(clearErrors());
     }
 
-    dispatch(getProduct(keyword, currentPage, price, category, ratings));
-      },[dispatch,keyword,currentPage,price,alert,error,category,ratings]); 
-      
+  },[dispatch,keyword,currentPage,price,alert,error,category,ratings]); 
+  
+  useEffect(()=>{
+    if(!products){
+      dispatch(getProduct(keyword, currentPage, price, category, ratings));
+
+    }
+    
+   },[]);
+
    return (
     <Fragment>
       {loading ? (
