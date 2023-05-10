@@ -14,6 +14,7 @@ import OrderSuccess from "./component/Cart/OrderSuccess";
 import Payment from "./component/Cart/Payment";
 import MyOrders from "./component/Order/MyOrders";
 import OrderDetails from "./component/Order/OrderDetails";
+import Dashboard from "./component/Admin/Dashboard.jsx";
 
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
@@ -90,7 +91,12 @@ function App() {
       <Route exact path="/orders" element={<MyOrders/>} />
       <Route exact path="/order/:id" element={<OrderDetails/>} />
       <Route exact path="/order/confirm" element={<ConfirmOrder/>} />
-    
+      <Route
+          isAdmin={true}
+          exact
+          path="/admin/dashboard"
+          element={<Dashboard/>}
+        />
       
       </Routes>
       <Footer />
