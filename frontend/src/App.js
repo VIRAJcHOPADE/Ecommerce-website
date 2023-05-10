@@ -68,14 +68,14 @@ function App() {
       <Header />
       {isAuthenticated && <UserOptions user={user} />}
       <Routes>
-        
-          <Route exact path="/process/payment" element={<Payment/>} />
-        
+      
+       
+      <Route exact path="/process/payment" element={<Payment/>} />  
       <Route exact path="/" element={<Home />} />
       <Route exact path="/product/:id" element={<ProductDetails/>} />
       {/* <Route exact path="/sad" element={<Loader/>} /> */}
       <Route exact path="/products" element={<Products/>} />
-      <Route  path="/products/:keyword" element={<Products />} />
+      <Route exact path="/products/:keyword" element={<Products />} />
       <Route exact path="/search" element={<Search/>} />
       <Route exact path="/login" element={<LoginSignUp/>} />
       <Route exact path="/account" element={<Profile/>} />
@@ -84,13 +84,14 @@ function App() {
       <Route exact path="/password/forgot" element={<ForgotPassword/>} />
       <Route exact path="/password/reset/:token" element={<ResetPassword/>} />
       <Route exact path="/cart" element={<Cart/>} />
-      <Route exact path="/success" component={<OrderSuccess/>} />
+      <Route exact path="/success" element={<OrderSuccess/>} />
 
       <Route exact path="/shipping" element={<Shipping/>} />
       <Route exact path="/orders" element={<MyOrders/>} />
       <Route exact path="/order/:id" element={<OrderDetails/>} />
       <Route exact path="/order/confirm" element={<ConfirmOrder/>} />
-
+    
+      
       </Routes>
       <Footer />
     </Router>
