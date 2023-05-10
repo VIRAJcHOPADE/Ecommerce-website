@@ -12,6 +12,9 @@ import Cart from "./component/Cart/Cart";
 import Shipping from "./component/Cart/Shipping.jsx";
 import OrderSuccess from "./component/Cart/OrderSuccess";
 import Payment from "./component/Cart/Payment";
+import MyOrders from "./component/Order/MyOrders";
+import OrderDetails from "./component/Order/OrderDetails";
+
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import {BrowserRouter as Router,Routes,Route} from "react-router-dom";
@@ -84,6 +87,8 @@ function App() {
       <Route exact path="/success" component={<OrderSuccess/>} />
 
       <Route exact path="/shipping" element={<Shipping/>} />
+      <Route exact path="/orders" element={<MyOrders/>} />
+      <Route exact path="/order/:id" element={<OrderDetails/>} />
       <Route exact path="/order/confirm" element={<ConfirmOrder/>} />
 
       </Routes>

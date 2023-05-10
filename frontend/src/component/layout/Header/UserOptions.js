@@ -46,17 +46,17 @@ const UserOptions = ({ user }) => {
   }
 
   function dashboard() {
-    history.push("/admin/dashboard");
+    history("/admin/dashboard");
   }
 
   function orders() {
-    history.push("/orders");
+    history("/orders");
   }
   function account() {
-    history.push("/account");
+    history("/account");
   }
   function cart() {
-    history.push("/cart");
+    history("/cart");
   }
   function logoutUser() {
     dispatch(logout());

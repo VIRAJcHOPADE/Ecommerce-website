@@ -1,31 +1,28 @@
-import React,{ Fragment , useEffect} from 'react'
+import React, { Fragment, useEffect } from "react";
+import "./Home.css";
 import { IoArrowBackCircleSharp } from "react-icons/io5"
-import "./Home.css"
-import ProductCard from "./ProductCard.js"
+import ProductCard from "./ProductCard.js";
 import MetaData from "../layout/MetaData";
 import { clearErrors, getProduct } from "../../actions/productAction";
 import { useSelector, useDispatch } from "react-redux";
-import Loader from '../layout/Loader/Loader';
-import {useAlert} from "react-alert"
+import Loader from "../layout/Loader/Loader";
+import { useAlert } from "react-alert";
 
 const Home = () => {
-    const alert = useAlert();
-    const dispatch = useDispatch();
-    const { loading, error, products} = useSelector(
-        (state) => state.products
-    );
+  const alert = useAlert();
+  const dispatch = useDispatch();
+  const { loading, error, products } = useSelector((state) => state.products);
 
-    useEffect(() => {
-        if(error) {
-            alert.error(error);
-            dispatch(clearErrors());
-        }
-        dispatch(getProduct());
-        console.log("products",products)
-    },[dispatch,error,alert,products]);
-    
+  useEffect(() => {
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
+    }
+    dispatch(getProduct());
+  }, [dispatch, error, alert]);
+
   return (
-   <Fragment>
+    <Fragment>
       {loading ? (
         <Loader />
       ) : (
@@ -38,7 +35,7 @@ const Home = () => {
 
             <a href="#container">
               <button>
-                Scroll <IoArrowBackCircleSharp/>
+                Scroll <IoArrowBackCircleSharp />
               </button>
             </a>
           </div>
@@ -53,7 +50,7 @@ const Home = () => {
           </div>
         </Fragment>
       )}
-    </Fragment> 
+    </Fragment>
   );
 };
 

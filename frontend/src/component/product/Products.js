@@ -25,7 +25,7 @@ const Products = () => {
     const params = useParams();
     
     const alert = useAlert();
-   
+    
    const [currentPage, setCurrentPage] = useState(1);
   const [price, setPrice] = useState([0, 25000]);
   const [category, setCategory] = useState("");
@@ -58,17 +58,10 @@ const Products = () => {
       dispatch(clearErrors());
     }
 
-  },[dispatch,keyword,currentPage,price,alert,error,category,ratings]); 
-  
-  useEffect(()=>{
-    if(!products){
-      dispatch(getProduct(keyword, currentPage, price, category, ratings));
+    dispatch(getProduct(keyword, currentPage, price, category, ratings));
+  }, [dispatch, keyword, currentPage, price, category, ratings, alert, error]);
 
-    }
-    
-   },[]);
-
-   return (
+  return (
     <Fragment>
       {loading ? (
         <Loader />
@@ -146,4 +139,4 @@ const Products = () => {
   );
 };
 
-export default Products
+export default Products;
