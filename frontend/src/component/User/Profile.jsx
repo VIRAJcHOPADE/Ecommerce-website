@@ -10,11 +10,11 @@ import "./Profile.css";
 const Profile = () => {
   const { user, loading, isAuthenticated } = useSelector((state) => state.user);
  const Navigate = useNavigate();
-  const checkValidation = ()=>{
+  
         if (isAuthenticated === false) {
                Navigate("/login");
             }
-  }
+  
   
   const history = useNavigate();
 
