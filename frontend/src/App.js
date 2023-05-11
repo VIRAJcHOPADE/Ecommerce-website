@@ -15,6 +15,7 @@ import Payment from "./component/Cart/Payment";
 import MyOrders from "./component/Order/MyOrders";
 import OrderDetails from "./component/Order/OrderDetails";
 import Dashboard from "./component/Admin/Dashboard.jsx";
+import ProductList from "./component/Admin/ProductList.jsx";
 
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
@@ -96,6 +97,12 @@ function App() {
           exact
           path="/admin/dashboard"
           element={<Dashboard/>}
+        />
+        <Route
+          exact
+          path="/admin/products"
+          isAdmin={true}
+          element={<ProductList/>}
         />
       
       </Routes>
