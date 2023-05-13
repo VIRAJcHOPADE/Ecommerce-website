@@ -17,6 +17,7 @@ import OrderDetails from "./component/Order/OrderDetails";
 import Dashboard from "./component/Admin/Dashboard.jsx";
 import ProductList from "./component/Admin/ProductList.jsx";
 import UpdateProduct from "./component/Admin/UpdateProduct";
+import OrderList from "./component/Admin/OrderList";
 
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
@@ -118,6 +119,14 @@ function App() {
           isAdmin={true}
           element={<UpdateProduct/>}
         />
+        
+        <Route
+          exact
+          path="/admin/orders"
+          isAdmin={true}
+          element={<OrderList/>}
+        />
+
 
       </Routes>
       <Footer />
