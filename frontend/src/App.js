@@ -18,6 +18,8 @@ import Dashboard from "./component/Admin/Dashboard.jsx";
 import ProductList from "./component/Admin/ProductList.jsx";
 import UpdateProduct from "./component/Admin/UpdateProduct";
 import OrderList from "./component/Admin/OrderList";
+import UpdateUser from "./component/Admin/UpdateUser";
+import ProductReviews from "./component/Admin/ProductReviews";
 
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
@@ -127,6 +129,19 @@ function App() {
           element={<OrderList/>}
         />
 
+        <Route
+          exact
+          path="/admin/user/:id"
+          isAdmin={true}
+          element={<UpdateUser/>}
+        />
+
+        <Route
+          exact
+          path="/admin/reviews"
+          isAdmin={true}
+          element={<ProductReviews/>}
+        />
 
       </Routes>
       <Footer />
