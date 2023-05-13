@@ -35,6 +35,7 @@ import UserOptions from "./component/layout/Header/UserOptions.js"
 import ConfirmOrder from "./component/Cart/ConfirmOrder";
 import axios from "axios";
 import { Fragment } from "react";
+import NewProduct from "./component/Admin/NewProduct";
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -104,7 +105,12 @@ function App() {
           isAdmin={true}
           element={<ProductList/>}
         />
-      
+        <Route
+          exact
+          path="/admin/product"
+          isAdmin={true}
+          element={<NewProduct/>}
+        />
       </Routes>
       <Footer />
     </Router>
