@@ -11,9 +11,11 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import SideBar from "./Sidebar";
 import { getAllUsers, clearErrors, deleteUser } from "../../actions/userAction";
 import { DELETE_USER_RESET } from "../../constants/userConstants";
+import { useNavigate } from "react-router-dom";
 
-const UsersList = ({ history }) => {
+const UsersList = () => {
   const dispatch = useDispatch();
+  const history = useNavigate();
 
   const alert = useAlert();
 
@@ -42,7 +44,7 @@ const UsersList = ({ history }) => {
 
     if (isDeleted) {
       alert.success(message);
-      history.push("/admin/users");
+      history("/admin/users");
       dispatch({ type: DELETE_USER_RESET });
     }
 
