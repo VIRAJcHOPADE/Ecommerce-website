@@ -142,7 +142,12 @@ function App() {
           isAdmin={true}
           element={<ProductReviews/>}
         />
-
+         <Route
+          component={
+            window.location.pathname === "/process/payment" ? null : NotFound
+          }
+        />
+        
       </Routes>
       <Footer />
     </Router>
